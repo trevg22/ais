@@ -7,8 +7,8 @@ use crate::errors::Result;
 use nom::bits::{bits, complete::take as take_bits};
 use nom::combinator::map;
 use nom::IResult;
-
-#[derive(Debug, PartialEq)]
+use serde::{Deserialize, Serialize};
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub struct LongRangeAisBroadcastMessage {
     pub message_type: u8,
     pub repeat_indicator: u8,

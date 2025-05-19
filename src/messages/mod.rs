@@ -7,6 +7,7 @@ pub mod addressed_safety_related;
 pub mod aid_to_navigation_report;
 pub mod assignment_mode_command;
 pub mod base_station_report;
+pub mod binary_acknowledge;
 pub mod binary_addressed;
 pub mod binary_broadcast_message;
 pub mod data_link_management_message;
@@ -29,15 +30,15 @@ pub mod static_data_report;
 pub mod types;
 pub mod utc_date_inquiry;
 pub mod utc_date_response;
-pub mod binary_acknowledge;
 
 pub use parsers::message_type;
+use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "alloc")]
 use crate::lib::std::{format, vec, vec::Vec};
 
 /// Contains all structured messages recognized by this crate
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub enum AisMessage {
     PositionReport(position_report::PositionReport),
     BaseStationReport(base_station_report::BaseStationReport),
