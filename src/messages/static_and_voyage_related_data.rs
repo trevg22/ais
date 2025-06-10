@@ -10,7 +10,7 @@ use nom::IResult;
 use serde::Deserialize;
 use serde::Serialize;
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct StaticAndVoyageRelatedData {
     pub message_type: u8,
     pub repeat_indicator: u8,

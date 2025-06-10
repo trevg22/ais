@@ -9,7 +9,7 @@ use nom::combinator::map;
 use nom::IResult;
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PositionReport {
     pub message_type: u8,
     pub repeat_indicator: u8,

@@ -9,7 +9,7 @@ use nom::combinator::map;
 use nom::IResult;
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum NavaidType {
     ReferencePoint,
     Racon,
@@ -85,7 +85,7 @@ impl NavaidType {
     }
 }
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AidToNavigationReport {
     pub message_type: u8,
     pub repeat_indicator: u8,

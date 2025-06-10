@@ -38,7 +38,7 @@ use serde::{Deserialize, Serialize};
 use crate::lib::std::{format, vec, vec::Vec};
 
 /// Contains all structured messages recognized by this crate
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub enum AisMessage {
     PositionReport(position_report::PositionReport),
     BaseStationReport(base_station_report::BaseStationReport),

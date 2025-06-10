@@ -9,7 +9,7 @@ use nom::bits::{bits, complete::take as take_bits};
 use nom::multi::many_m_n;
 use nom::IResult;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Acknowledgement {
     pub mmsi: u32,
     pub seq_num: u8,
@@ -28,7 +28,7 @@ pub type AcknowledgementList = lib::std::vec::Vec<Acknowledgement>;
 #[cfg(all(not(feature = "std"), not(feature = "alloc")))]
 pub type AcknowledgementList = lib::std::vec::Vec<Acknowledgement, 4>;
 
-#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SafetyRelatedAcknowledge {
     pub message_type: u8,
     pub repeat_indicator: u8,

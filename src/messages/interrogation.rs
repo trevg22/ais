@@ -9,7 +9,7 @@ use nom::IResult;
 use serde::Deserialize;
 use serde::Serialize;
 
-#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Message {
     pub message_type: u8,
     pub slot_offset: Option<u16>,
@@ -43,7 +43,7 @@ pub type MessageList = lib::std::vec::Vec<Message>;
 #[cfg(all(not(feature = "std"), not(feature = "alloc")))]
 pub type MessageList = lib::std::vec::Vec<Message, 3>;
 
-#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Station {
     pub mmsi: u32,
     pub messages: MessageList,
@@ -75,7 +75,7 @@ pub type StationList = lib::std::vec::Vec<Station>;
 #[cfg(all(not(feature = "std"), not(feature = "alloc")))]
 pub type StationList = lib::std::vec::Vec<Station, 2>;
 
-#[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Interrogation {
     pub message_type: u8,
     pub repeat_indicator: u8,
