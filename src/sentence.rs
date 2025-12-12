@@ -11,6 +11,7 @@ use nom::combinator::{map, map_res, opt, peek, verify};
 use nom::number::complete::hex_u32;
 use nom::sequence::{delimited, terminated};
 use nom::IResult;
+use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 pub const MAX_SENTENCE_SIZE_BYTES: usize = 384;
 
@@ -19,7 +20,7 @@ pub type AisRawData = lib::std::vec::Vec<u8>;
 #[cfg(all(not(feature = "std"), not(feature = "alloc")))]
 pub type AisRawData = lib::std::vec::Vec<u8, MAX_SENTENCE_SIZE_BYTES>;
 
-#[derive(Clone, PartialEq, Eq, Debug, Serialize, Deserialize)]
+#[derive(Clone, PartialEq, Eq, Debug, Serialize, Deserialize, JsonSchema)]
 /// Represents the NMEA sentence type of an AIS message
 pub enum AisReportType {
     /// Report from another ship
@@ -41,7 +42,7 @@ impl<'a> From<&'a [u8]> for AisReportType {
 }
 
 /// Talker ID for the AIS station
-#[derive(Clone, PartialEq, Eq, Debug, Serialize, Deserialize)]
+#[derive(Clone, PartialEq, Eq, Debug, Serialize, Deserialize, JsonSchema)]
 pub enum TalkerId {
     /// NMEA 4.0 Base AIS station
     AB,
@@ -185,7 +186,7 @@ impl AisParser {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize, JsonSchema)]
 /// Represents an NMEA sentence parsed as AIS
 pub struct AisSentence {
     pub talker_id: TalkerId,

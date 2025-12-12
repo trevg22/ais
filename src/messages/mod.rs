@@ -32,13 +32,14 @@ pub mod utc_date_inquiry;
 pub mod utc_date_response;
 
 pub use parsers::message_type;
+use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "alloc")]
 use crate::lib::std::{format, vec, vec::Vec};
 
 /// Contains all structured messages recognized by this crate
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize, JsonSchema)]
 pub enum AisMessage {
     PositionReport(position_report::PositionReport),
     BaseStationReport(base_station_report::BaseStationReport),

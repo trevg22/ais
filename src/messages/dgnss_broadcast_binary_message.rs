@@ -6,6 +6,7 @@ use crate::lib;
 use nom::bits::{bits, complete::take as take_bits};
 use nom::combinator::map;
 use nom::IResult;
+use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 #[cfg(all(not(feature = "std"), not(feature = "alloc")))]
@@ -16,7 +17,7 @@ pub type CorrectionData = lib::std::vec::Vec<u8>;
 #[cfg(all(not(feature = "std"), not(feature = "alloc")))]
 pub type CorrectionData = lib::std::vec::Vec<u8, MAX_DATA_SIZE_BYTES>;
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize, JsonSchema)]
 pub struct DgnssBroadcastBinaryMessage {
     pub message_type: u8,
     pub repeat_indicator: u8,
@@ -26,7 +27,7 @@ pub struct DgnssBroadcastBinaryMessage {
     pub payload: DifferentialCorrectionData,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 pub struct DifferentialCorrectionData {
     pub message_type: u8,
     pub station_id: u16,

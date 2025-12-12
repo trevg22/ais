@@ -8,9 +8,10 @@ use nom::bits::{bits, complete::take as take_bits};
 #[cfg(any(feature = "std", feature = "alloc"))]
 use nom::multi::many_m_n;
 use nom::IResult;
+use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 pub struct SlotReservation {
     pub offset: u16,
     pub num_slots: u8,
@@ -41,7 +42,7 @@ pub type SlotReservationList = lib::std::vec::Vec<SlotReservation>;
 #[cfg(all(not(feature = "std"), not(feature = "alloc")))]
 pub type SlotReservationList = lib::std::vec::Vec<SlotReservation, 4>;
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 pub struct DataLinkManagementMessage {
     pub message_type: u8,
     pub repeat_indicator: u8,

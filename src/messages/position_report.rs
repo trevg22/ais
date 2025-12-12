@@ -7,9 +7,10 @@ use crate::errors::Result;
 use nom::bits::{bits, complete::take as take_bits};
 use nom::combinator::map;
 use nom::IResult;
+use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize, JsonSchema)]
 pub struct PositionReport {
     pub message_type: u8,
     pub repeat_indicator: u8,
@@ -80,7 +81,7 @@ fn parse_base(data: &[u8]) -> IResult<&[u8], PositionReport> {
     })(data)
 }
 
-#[derive(Debug, PartialEq, Eq, Copy, Clone, Serialize, Deserialize)]
+#[derive(Debug, PartialEq, Eq, Copy, Clone, Serialize, Deserialize, JsonSchema)]
 pub enum NavigationStatus {
     UnderWayUsingEngine,
     AtAnchor,

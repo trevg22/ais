@@ -21,6 +21,7 @@ default = ["std"]
 nom = { version = "7", default-features = false }
 heapless = { version = "0.7" }
 serde = {version="1.0.219",features=["derive"]}
+schemars = { version = "1.1.0", default-features = false, features = ["std", "derive", "chrono04", "preserve_order"] }
 
 [[bin]]
 name = "aisparser"

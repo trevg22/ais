@@ -1,3 +1,4 @@
+use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 pub fn parse_speed_over_ground(data: u16) -> Option<f32> {
@@ -35,7 +36,7 @@ pub fn parse_heading(data: u16) -> Option<u16> {
     }
 }
 
-#[derive(Debug, PartialEq, Eq, Copy, Clone, Serialize, Deserialize)]
+#[derive(Debug, PartialEq, Eq, Copy, Clone, Serialize, Deserialize, JsonSchema)]
 pub enum Accuracy {
     Unaugmented,
     Dgps,
@@ -51,7 +52,7 @@ impl Accuracy {
     }
 }
 
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Serialize, Deserialize, JsonSchema)]
 pub struct RateOfTurn {
     raw: i8,
 }
@@ -90,7 +91,7 @@ impl RateOfTurn {
     }
 }
 
-#[derive(Debug, PartialEq, Eq, Copy, Clone, Serialize, Deserialize)]
+#[derive(Debug, PartialEq, Eq, Copy, Clone, Serialize, Deserialize, JsonSchema)]
 pub enum ManeuverIndicator {
     NoSpecialManeuver,
     SpecialManeuver,

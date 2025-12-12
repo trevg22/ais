@@ -10,8 +10,9 @@ use crate::messages::types::ShipType;
 use nom::bits::{bits, complete::take as take_bits};
 use nom::combinator::map;
 use nom::IResult;
+use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize, JsonSchema)]
 pub struct ExtendedClassBPositionReport {
     pub message_type: u8,
     pub repeat_indicator: u8,
